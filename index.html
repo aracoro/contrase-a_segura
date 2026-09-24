@@ -4,52 +4,136 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-    <title>Generador de Contraseñas</title>
+    <title>Generador y Evaluador de Contraseñas Seguras</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
-    <div class="container">
-        <h2>Generador de Contraseñas</h2>
+    <div class="wrap">
+        <h1>Generador y evaluador de contraseñas seguras</h1>
+        <p class="subtitle">Basado en el Manual de Contraseñas Seguras · Hacker Mentor</p>
 
-        <table class="box">
-            <tr>
-                <td id="pw">--------</td>
-                <td style="width:1%; white-space:nowrap;"><button id="copyBtn">Copiar</button></td>
-            </tr>
-        </table>
-        <div class="meter">
-            <div class="meter-fill" id="meterFill"></div>
+        <div class="grid">
+            <section class="card">
+                <h2>Generador de contraseñas</h2>
+
+                <div class="mode-toggle">
+                    <button class="mode-btn active" id="modeRandom" type="button">Aleatoria</button>
+                    <button class="mode-btn" id="modePhrase" type="button">Frase secreta</button>
+                </div>
+
+                <table class="box">
+                    <tr>
+                        <td id="pw">--------</td>
+                        <td class="btncell"><button id="copyBtn">Copiar</button></td>
+                    </tr>
+                </table>
+
+                <div class="meter">
+                    <div class="meter-fill" id="meterFill"></div>
+                </div>
+                <div class="meter-label" id="meterLabel">&nbsp;</div>
+
+                <fieldset id="randomOptions">
+                    <legend>Opciones</legend>
+                    <div class="field-row">
+                        <label for="len">Longitud:</label>
+                        <input type="range" id="len" min="8" max="32" value="16">
+                        <span id="lenVal">16</span>
+                    </div>
+                    <div class="field-row">
+                        <input type="checkbox" id="upper" checked><label for="upper"> Mayúsculas (A-Z)</label>
+                    </div>
+                    <div class="field-row">
+                        <input type="checkbox" id="lower" checked><label for="lower"> Minúsculas (a-z)</label>
+                    </div>
+                    <div class="field-row">
+                        <input type="checkbox" id="nums" checked><label for="nums"> Números (0-9)</label>
+                    </div>
+                    <div class="field-row">
+                        <input type="checkbox" id="syms" checked><label for="syms"> Símbolos (!@#$...)</label>
+                    </div>
+                </fieldset>
+
+                <fieldset id="phraseOptions" class="hidden">
+                    <legend>Opciones de frase</legend>
+                    <div class="field-row">
+                        <label for="wordCount">Palabras:</label>
+                        <input type="range" id="wordCount" min="2" max="5" value="3">
+                        <span id="wordCountVal">3</span>
+                    </div>
+                    <div class="note-small">Ej: <b>MisPerros3ComenGalletas!</b> (como en el manual)</div>
+                </fieldset>
+
+                <button id="genBtn">Generar</button>
+
+                <div class="note">
+                    Recomendaciones: 12 caracteres o más, combinar tipos de carácter,
+                    no usar datos personales y no repetir la misma contraseña en varias cuentas.
+                </div>
+            </section>
+
+            <section class="card">
+                <h2>Evaluador en vivo</h2>
+                <p class="sub">Escribe una contraseña y revisa los requisitos.</p>
+
+                <table class="box">
+                    <tr>
+                        <td>
+                            <input type="text" id="evalInput" placeholder="Tu contraseña" autocomplete="off">
+                        </td>
+                        <td class="btncell"><button id="toggleEye" type="button">👁</button></td>
+                    </tr>
+                </table>
+
+                <div class="meter">
+                    <div class="meter-fill" id="evalMeterFill"></div>
+                </div>
+                <div class="meter-label" id="evalMeterLabel">&nbsp;</div>
+
+                <ul class="checklist" id="checklist">
+                    <li>12 caracteres o más <span class="tag" id="tag-len12">NO</span></li>
+                    <li>Mayúsculas <span class="tag" id="tag-upper">NO</span></li>
+                    <li>Minúsculas <span class="tag" id="tag-lower">NO</span></li>
+                    <li>Números <span class="tag" id="tag-nums">NO</span></li>
+                    <li>Símbolos <span class="tag" id="tag-syms">NO</span></li>
+                    <li>No es una contraseña común <span class="tag" id="tag-common">NO</span></li>
+                    <li>Sin patrones obvios (1234, qwerty, abcd) <span class="tag" id="tag-pattern">NO</span></li>
+                </ul>
+            </section>
         </div>
-        <div class="meter-label" id="meterLabel">&nbsp;</div>
 
-        <fieldset>
-            <legend>Opciones</legend>
+        <section class="card full">
+            <h2>Recordatorio de cambio</h2>
+            <p class="sub">El manual recomienda cambiar tu contraseña cada 3 a 6 meses.</p>
             <div class="field-row">
-                <label for="len">Longitud:</label>
-                <input type="range" id="len" min="8" max="32" value="16">
-                <span id="lenVal">16</span>
+                <label for="lastChanged">Último cambio:</label>
+                <input type="date" id="lastChanged">
+                <button id="saveDateBtn" type="button">Guardar</button>
             </div>
-            <div class="field-row">
-                <input type="checkbox" id="upper" checked><label for="upper"> Mayusculas (A-Z)</label>
+            <div class="meter">
+                <div class="meter-fill" id="reminderFill"></div>
             </div>
-            <div class="field-row">
-                <input type="checkbox" id="lower" checked><label for="lower"> Minusculas (a-z)</label>
-            </div>
-            <div class="field-row">
-                <input type="checkbox" id="nums" checked><label for="nums"> Numeros (0-9)</label>
-            </div>
-            <div class="field-row">
-                <input type="checkbox" id="syms" checked><label for="syms"> Simbolos (!@#$...)</label>
-            </div>
-        </fieldset>
+            <div class="meter-label" id="reminderLabel">Registra la fecha para ver el estado.</div>
+        </section>
 
-        <button id="genBtn">Generar</button>
-
-        <div class="note">
-            Recomendaciones basicas: 12 caracteres o mas, combinar tipos de caracter,
-            no usar datos personales y no repetir la misma contrasena en varias cuentas.
-        </div>
+        <section class="card full">
+            <h2>Buenas prácticas adicionales</h2>
+            <div class="tips">
+                <div class="tip">
+                    <strong>No reutilices</strong>
+                    <p>Usa una contraseña diferente para cada cuenta. Si una se filtra, las demás siguen seguras.</p>
+                </div>
+                <div class="tip">
+                    <strong>Usa un gestor de contraseñas</strong>
+                    <p>Herramientas como LastPass, 1Password o Dashlane generan y guardan tus contraseñas por ti.</p>
+                </div>
+                <div class="tip">
+                    <strong>Activa 2FA</strong>
+                    <p>La autenticación de dos factores agrega una capa extra aunque roben tu contraseña.</p>
+                </div>
+            </div>
+        </section>
     </div>
 
     <script src="script.js"></script>
