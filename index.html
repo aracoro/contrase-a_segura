@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Generador de Contrasenas</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <h2>Generador de Contrasenas</h2>
+
+        <table class="box">
+            <tr>
+                <td id="pw">--------</td>
+                <td style="width:1%; white-space:nowrap;"><button id="copyBtn">Copiar</button></td>
+            </tr>
+        </table>
+        <div class="meter">
+            <div class="meter-fill" id="meterFill"></div>
+        </div>
+        <div class="meter-label" id="meterLabel">&nbsp;</div>
+
+        <fieldset>
+            <legend>Opciones</legend>
+            <div class="field-row">
+                <label for="len">Longitud:</label>
+                <input type="range" id="len" min="8" max="32" value="16">
+                <span id="lenVal">16</span>
+            </div>
+            <div class="field-row">
+                <input type="checkbox" id="upper" checked><label for="upper"> Mayusculas (A-Z)</label>
+            </div>
+            <div class="field-row">
+                <input type="checkbox" id="lower" checked><label for="lower"> Minusculas (a-z)</label>
+            </div>
+            <div class="field-row">
+                <input type="checkbox" id="nums" checked><label for="nums"> Numeros (0-9)</label>
+            </div>
+            <div class="field-row">
+                <input type="checkbox" id="syms" checked><label for="syms"> Simbolos (!@#$...)</label>
+            </div>
+        </fieldset>
+
+        <button id="genBtn">Generar</button>
+
+        <div class="note">
+            Recomendaciones basicas: 12 caracteres o mas, combinar tipos de caracter,
+            no usar datos personales y no repetir la misma contrasena en varias cuentas.
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
