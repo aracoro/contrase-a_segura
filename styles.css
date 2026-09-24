@@ -3,14 +3,14 @@
     padding-top: env(safe-area-inset-top, 0px);
     padding-bottom: env(safe-area-inset-bottom, 0px);
 
-    --bg: #14171c;
-    --panel: #1c2029;
-    --panel-2: #232838;
-    --border: #333a4a;
-    --text: #e7e9ee;
-    --muted: #9aa2b1;
-    --accent: #6c8cff;
-    --accent-2: #8f6cff;
+    --bg: #0a0a0a;
+    --panel: #161616;
+    --panel-2: #1e1e1e;
+    --border: #3a3a3a;
+    --text: #e8e8e8;
+    --muted: #9a9a9a;
+    --accent: #8a8a8a;
+    --accent-2: #d0d0d0;
     --danger: #e35d5d;
     --warn: #e3b23c;
     --ok: #3fd17a;
@@ -27,7 +27,7 @@ html {
 body {
     margin: 0;
     min-height: 100%;
-    background: radial-gradient(circle at top left, #1c2230, var(--bg));
+    background: radial-gradient(circle at top left, #1a1a1a, var(--bg));
     color: var(--text);
     font-family: 'Segoe UI', Arial, Helvetica, sans-serif;
     font-size: 14px;
@@ -75,7 +75,7 @@ h1 {
     border: 1px solid var(--border);
     border-radius: 14px;
     padding: 18px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
 }
 
 .card.full {
@@ -112,7 +112,7 @@ h2 {
 }
 
 .mode-btn.active {
-    background: linear-gradient(90deg, var(--accent), var(--accent-2));
+    background: linear-gradient(90deg, #4a4a4a, #6e6e6e);
     color: #fff;
     border-color: transparent;
 }
@@ -143,7 +143,7 @@ table.box td {
     font-size: 15px;
     font-weight: bold;
     word-break: break-all;
-    color: var(--accent);
+    color: var(--accent-2);
 }
 
 #evalInput {
@@ -201,11 +201,11 @@ label {
 input[type="range"] {
     width: 140px;
     vertical-align: middle;
-    accent-color: var(--accent);
+    accent-color: var(--accent-2);
 }
 
 input[type="checkbox"] {
-    accent-color: var(--accent);
+    accent-color: var(--accent-2);
 }
 
 input[type="date"] {
@@ -243,13 +243,13 @@ button:active {
     width: 100%;
     padding: 10px;
     font-weight: bold;
-    background: linear-gradient(90deg, var(--accent), var(--accent-2));
+    background: linear-gradient(90deg, #4a4a4a, #7a7a7a);
     border: none;
     color: #fff;
 }
 
 #genBtn:hover {
-    filter: brightness(1.08);
+    filter: brightness(1.15);
 }
 
 .meter {
@@ -340,7 +340,7 @@ button:active {
 
 .tip strong {
     display: block;
-    color: var(--accent);
+    color: var(--accent-2);
     margin-bottom: 6px;
     font-size: 13px;
 }
